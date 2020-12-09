@@ -5,18 +5,27 @@ describe Player do
     expect(subject).to be_kind_of(Player)
   end
 
-  subject(:bob) { Player.new('Bob') }
+  subject(:ian) { Player.new('Ian') }
+  subject(:roger) { Player.new('Roger') }
 
   describe '#name' do
     it 'can return the player name' do
-      expect(bob.name).to eq 'Bob'
+      expect(ian.name).to eq 'Ian'
     end
   end
 
   describe '#hit_points' do
     it 'returns the player hit points' do
-      expect(bob.hit_points).to eq described_class::DEFAULT_HIT_POINTS
+      expect(ian.hit_points).to eq described_class::DEFAULT_HIT_POINTS
     end
   end
+
+  describe '#attack' do
+    it 'damages the player' do
+      expect(ian).to receive(:receive_damage)
+      ian.attack(roger)
+    end
+  end
+
 
 end
